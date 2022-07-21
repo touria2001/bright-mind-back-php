@@ -1,48 +1,57 @@
 <?php 
 require_once '../../fichierCommun/db.class.php';
 class CRUDStudent extends dbConnection{
-	private $nom;
-    private $prenom;
+	
     private $email;
     private $pw;
-    private $niveauScolaire;
+   
 public function __construct()
 {
     parent::PDOConnection();
 }
     
-public  function setNom($nom){
-    $this->nom = $nom;
-}
-public  function setPrenom($prenom){
-    $this->prenom = $prenom;
-}
+
 public  function setEmail($email){
     $this->email = $email;
 }
 public  function setPw($pw){
     $this->pw = $pw;
 }
-public  function setNiveauScolaire($niveauScolaire){
-    $this->niveauScolaire = $niveauScolaire;
+
+
+
+
+
+public function signUpStudent($prenom,$nom,$niveauScolaire){
+       
+    $statement = $this->dbc->prepare("INSERT INTO etudiant(nom,prenom,email,niveauScolaire,pw,)VALUES(:nom,:prenom,:email,:niveauScolaire,:pw)");
+    $statement->execute([
+
+        "nom" => $nom,
+        "prenom" => $prenom,
+        "email" => $this->email,
+        "niveauScolaire" => $niveauScolaire,
+        "pw" => password_hash($this->pw, PASSWORD_DEFAULT),
+
+
+    ]);
+    parent::close();
 }
 
 
-
-
-
-
-
-    public function addStudent(){
+    public function addStudent($prenom,$nom,$cin,$telephone,$niveauScolaire,$ajouterPar){
        
-        $statement = $this->dbc->prepare("INSERT INTO etudiant(nom,prenom,email,niveauScolaire,pw)VALUES(:nom,:prenom,:email,:niveauScolaire,:pw)");
+        $statement = $this->dbc->prepare("INSERT INTO etudiant(nom,prenom,email,niveauScolaire,cin,telephone,pw,ajouterPar)VALUES(:nom,:prenom,:email,:niveauScolaire,:cin,:telephone,:pw,:ajouterPar)");
         $statement->execute([
 
-            "nom" => $this->nom,
-            "prenom" => $this->prenom,
+            "nom" => $nom,
+            "prenom" => $prenom,
             "email" => $this->email,
-            "niveauScolaire" => $this->niveauScolaire,
+            "niveauScolaire" => $niveauScolaire,
+            "cin"=>$cin,
+            "telephone" => $telephone,
             "pw" => password_hash($this->pw, PASSWORD_DEFAULT),
+            "ajouterPar" => $ajouterPar,
 
 
         ]);

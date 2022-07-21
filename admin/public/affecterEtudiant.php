@@ -46,7 +46,7 @@ if (!isset($_SESSION['email'])) {
                 <select name="subject<?php echo $i++; ?>">
              <option value=""></option>
                     <?php foreach ($student->afficherclassParMatiere($matiere['matiere']) as $class) { ?>
-                        <option value="<?php echo $class['id']; ?>"><?php echo $class['nom']; ?><?php echo $class['id']; ?></option>
+                        <option value="<?php echo $class['id']; ?>"><?php echo $class['nom']; ?></option>
                     <?php  } ?>
                 </select>
             <?php       }       ?>

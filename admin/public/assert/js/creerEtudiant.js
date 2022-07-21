@@ -15,7 +15,7 @@ document.getElementById("sign-up-form").addEventListener("submit", function (e) 
         if (this.readyState == 4 && this.status == 200) {
 
             document.getElementById("inscrir").style.pointerEvents = "auto";
-            document.getElementById("inscrir").value = "S'inscrir";
+            document.getElementById("inscrir").value = "Create Account";
 
             Array.prototype.forEach.call(document.getElementsByClassName("error"), function (el) {
                 el.innerHTML = "";
@@ -42,6 +42,37 @@ document.getElementById("sign-up-form").addEventListener("submit", function (e) 
                     document.getElementById("nomError").innerHTML = this.response.nomVide;
 
                 }
+                if (this.response.telInvalide) {
+
+                    document.getElementById("telError").innerHTML = this.response.telInvalide;
+
+                }
+                if (this.response.telVide) {
+
+                    document.getElementById("telError").innerHTML = this.response.telVide;
+
+                }
+                if (this.response.cinInvalide) {
+
+                    document.getElementById("cinError").innerHTML = this.response.cinInvalide;
+
+                }
+                if (this.response.cinVide) {
+
+                    document.getElementById("cinError").innerHTML = this.response.cinVide;
+
+                }
+                if (this.response.niveauScolaireInvalide) {
+
+                    document.getElementById("niveauError").innerHTML = this.response.niveauScolaireInvalide;
+
+                }
+                if (this.response.niveauScolaireVide) {
+
+                    document.getElementById("niveauError").innerHTML = this.response.niveauScolaireVide;
+
+                }
+
                 if (this.response.emailInvalide) {
 
                     document.getElementById("emailError").innerHTML = this.response.emailInvalide;
@@ -58,16 +89,7 @@ document.getElementById("sign-up-form").addEventListener("submit", function (e) 
                     document.getElementById("emailError").innerHTML = this.response.emailVide;
 
                 }
-                if (this.response.niveauScolaireInvalid) {
-
-                    document.getElementById("niveauError").innerHTML = this.response.niveauScolaireInvalid;
-
-                }
-                if (this.response.niveauScolaireVide) {
-
-                    document.getElementById("niveauError").innerHTML = this.response.niveauScolaireVide;
-
-                }
+             
                
                 if (this.response.pwInvalide) {
 
@@ -103,7 +125,7 @@ document.getElementById("sign-up-form").addEventListener("submit", function (e) 
         }
     };
 
-    xhr.open("POST", "../include/inscrirAjax.php", true);
+    xhr.open("POST", "../include/creerEtudiant.php", true);
 
     xhr.responseType = "json";
     xhr.send(data);
@@ -111,7 +133,7 @@ document.getElementById("sign-up-form").addEventListener("submit", function (e) 
 });
 
 Array.prototype.forEach.call(document.querySelectorAll("#sign-up-form > input"), function (el) {
-    console.log(el);
+    
     el.addEventListener('focus', function(){
         Array.prototype.forEach.call(document.getElementsByClassName("error"), function (ele) {
             ele.innerHTML = "";

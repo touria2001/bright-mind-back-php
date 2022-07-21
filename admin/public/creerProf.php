@@ -14,7 +14,7 @@ else{
 
 
 $id = $_SESSION['id'];
-echo $id;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

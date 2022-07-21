@@ -1,4 +1,22 @@
 <!DOCTYPE html>
+<?php 
+session_start();
+if(!isset($_SESSION['email'])){
+    header("Location:connecter.php"); 
+ 
+}
+else{
+    if($_SESSION['admin']==0){
+        header("Location:connecter.php"); 
+ 
+    }
+
+
+
+$id = $_SESSION['id'];
+
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,19 +25,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
 <body>
-    <form id="sign-up-form" method="post" action="">
+<form id="sign-up-form" method="post" action="">
         <label for="prenom">first name</label>
         <input type="text" id="prenom" name="prenom">
         <p class="error" id="prenomError"></p>
+       
         <label for="nom">last name</label>
         <input type="text" id="nom" name="nom">
         <p class="error" id="nomError"></p>
+      
         <label for="email">email</label>
         <input type="email" id="email" name="email">
         <p class="error" id="emailError"></p>
-        
+
         <label for="niveau">school level</label>
         <input list="navigateurs" name="niveauScolaire" id="niveau" />
         <datalist id="navigateurs">
@@ -39,18 +58,31 @@
             <option value="not at school">
         </datalist>
         <p class="error" id="niveauError"></p>
+        
+        <label for="cin">cin</label>
+        <input type="text" id="cin" name="cin">
+        <p class="error" id="cinError"></p>
+
+        <label for="email">phone number</label>
+        <input type="text" id="tel" name="tel">
+        <p class="error" id="telError"></p>
+
 
         <label for="pw">password</label>
         <input type="password" id="pw" name="pw">
         <p class="error" id="pwError"></p>
+       
         <label for="pwVerif">password confirmation</label>
         <input type="password" id="pwVerif" name="pwVerif">
         <p class="error" id="pwVerifError"></p>
-        <input id="inscrir" type="submit" value="s'inscrire">
+       
+        <input id="inscrir" type="submit" value="Create Account">
     </form>
     <p id="error"></p>
-    <script src="assert/js/inscrire.js">
+    <script src="assert/js/creerEtudiant.js">
     </script>
-</body>
 
+
+</body>
 </html>
+<?php } ?>

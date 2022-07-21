@@ -31,6 +31,7 @@ class SignUp extends dbConnection
         $this->validation->isInvalidNom($this->nom);
         $this->validation->isInvalidPrenom($this->prenom);
         $this->validation->isInvalidEmail($this->email);
+        $this->validation->isInvalidNiveauScolaire($this->niveauScolaire);
         $this->validation->isInvalidPw($this->pw);
         $this->validation->isNotMatchPw($this->pw,$this->pwVerif);
         $this->errors = $this->validation->errors;
@@ -84,15 +85,14 @@ class SignUp extends dbConnection
         if ($this->errors == null) {
             require_once 'CRUDStudent.class.php';
             $student = new CRUDStudent();
-            $student->setNom($this->nom);
-            $student->setPrenom($this->prenom);
+          
             $student->setEmail($this->email);
             $student->setPw( $this->pw);
-            $student->setNiveauScolaire($this->niveauScolaire);
+           
             
             
             
-            $student->addStudent();
+            $student-> signUpStudent($this->prenom,$this->nom,$this->niveauScolaire);
         }
     }
 }

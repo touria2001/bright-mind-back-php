@@ -55,10 +55,10 @@ $arrayStudent = new CRUDStudent();?>
     
    <td>
     <?php if($student['status'] == 0 ){?>
-   <a href="../include/activerCompteProf.php?id=<?php echo $student['id'] ;?>&status=0">Disable</a>
+   <a href="../include/activerCompteEtudiant.php?id=<?php echo $student['id'] ;?>&status=0">Disable</a>
 
    <?php }else {?>
-    <a href="../include/activerCompteProf.php?id=<?php echo $student['id'] ;?>&status=1">Enable</a>
+    <a href="../include/activerCompteEtudiant.php?id=<?php echo $student['id'] ;?>&status=1">Enable</a>
 
    <?php } ?>
    

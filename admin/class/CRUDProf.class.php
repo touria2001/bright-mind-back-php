@@ -49,6 +49,7 @@ class CRUDProf extends dbConnection
       
     }
     public function readProfById($id){
+        parent::PDOConnection();
         $sql = "select * from professeur where id = ".$id."";
         $res = $this->dbc->query($sql);
         $res->setFetchMode(PDO::FETCH_ASSOC);

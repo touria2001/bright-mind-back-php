@@ -20,6 +20,7 @@
   <input type="email" name="email" id="emailOublie">
   <input id="oublieSubmit" type="submit" value="get password">
 <p class="erreurAjax"></p>  
+
 </form>
    <script src="assert/js/connecte.js">
     </script>

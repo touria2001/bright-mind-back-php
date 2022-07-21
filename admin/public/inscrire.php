@@ -58,6 +58,7 @@ else{
         <input id="inscrir" type="submit" value="Create Account">
     </form>
     <p id="error"></p>
+    
     <script src="assert/js/inscrire.js">
     </script>
 </body>

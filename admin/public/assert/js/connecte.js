@@ -80,7 +80,7 @@ document.getElementById("oubliePw").addEventListener("submit", function (e) {
       if (this.readyState == 4 && this.status == 200) {
       
         document.getElementById("oublieSubmit").style.pointerEvents = "auto";
-            document.getElementById("oublieSubmit").value = "get password";
+            document.getElementById("oublieSubmit").value = "get code";
         if (this.response) {
             if(this.response.emailNotExist){
                 document.querySelector(".erreurAjax").innerHTML =this.response.emailNotExist ;
@@ -94,8 +94,8 @@ document.getElementById("oubliePw").addEventListener("submit", function (e) {
                 document.querySelector(".erreurAjax").innerHTML =this.response.emailVide;
 
             }
-            if(this.response.length == 0){
-                document.querySelector(".erreurAjax").innerHTML ="<span style=\"color: #39ef39;\">the password has been sent to you</span>";
+            if(this.response.length == 1 && this.response.email ){
+                document.location.href="../code.php?email="+this.response.email;
             }
   
          

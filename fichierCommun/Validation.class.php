@@ -45,6 +45,18 @@ class Validation
             $this->errors['cinVide'] = "<span style='color:red;'>please fill  the cin field</span>";
         }
     }
+    public function isEmptyName($name)
+    {
+        if (empty($name)) {
+            $this->errors['nameVide'] = "<span style='color:red;'>please fill  the name field</span>";
+        }
+    }
+    public function isEmptyField($field)
+    {
+        if (empty($field)) {
+            $this->errors['fieldVide'] = "<span style='color:red;'>please fill  this field</span>";
+        }
+    }
     public function isEmptySubject($subject)
     {
         if (empty($subject)) {
@@ -77,6 +89,13 @@ class Validation
 
         if (!preg_match("/^[a-zA-Z]+$/", $prenom) || strlen($prenom) > 25 || strlen($prenom) < 3) {
             $this->errors["prenomInvalide"] = "<span style='color:red;'>Sorry, your first name seems invalid, try another</span>";
+        }
+    }
+    public function isInvalidNiveauScolaire($niveauScolaire)
+    {
+
+        if (!preg_match("/^[a-zA-Z0-9\s]+$/", $niveauScolaire) || strlen($niveauScolaire) > 40 || strlen($niveauScolaire) < 1) {
+            $this->errors["niveauScolaireInvalide"] = "<span style='color:red;'>Sorry, your level school seems invalid, try another</span>";
         }
     }
     public function isInvalidCin($cin)

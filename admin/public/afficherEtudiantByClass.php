@@ -31,7 +31,7 @@ $id = $_SESSION['id'];
 <body>
 <?php   
 
-$arrayStudent = new Admin();?>
+$admin= new Admin();?>
 
 
 
@@ -47,12 +47,14 @@ $arrayStudent = new Admin();?>
     </thead>
     <tbody>
 <?php
-  foreach( $arrayStudent->readStudentByClass($_GET['id']) as $student){?>
+$i=0;
+  foreach( $admin->readStudentByClass($_GET['id']) as $student){?>
     <tr>
-    <td><?php echo $student['prenom']; ?></td>
-    <td> <?php echo $student['nom']; ?></td>
-    <td><?php echo $student['email'] ;?></td>
-    <td><?php echo $student['niveauScolaire']; ?></td>
+    <td><?php echo $student['prenom'] ?></td>
+    <td><?php echo $student['nom'] ?></td>
+    <td><?php echo $student['email'] ?></td>
+    <td><?php echo $student['niveauScolaire'] ?></td>
+    
     
 
     

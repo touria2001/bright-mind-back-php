@@ -13,12 +13,7 @@ if (!empty($_POST)) {
 
 
     $signUpClass = new SignUp($nom,$prenom,$email,  $niveauScolaire ,$password , $passwordConf);
-    // $signUpClass->isEmpty();
-    // $signUpClass->isInvalidNom();
-    // $signUpClass-> isInvalidPrenom();
-    // $signUpClass->isInvalidEmail();
-    // $signUpClass->isInvalidPw();
-    // $signUpClass->isNotMatchPw();
+   
     $signUpClass->isEmailExist();
     $signUpClass->sendEmailToAdmin();
     $signUpClass->createUser();

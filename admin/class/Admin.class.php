@@ -6,7 +6,6 @@ class Admin extends dbConnection
     public function __construct()
     {
         parent::PDOConnection();
-        
     }
     public function desactiverCompte($id)
     {
@@ -129,27 +128,69 @@ class Admin extends dbConnection
         parent::close();
         return $res;
     }
-    public function affecterEtudiant($idEtudiant, $idClass)
+    public function verifierAffectation($idEtudiant, $idClass, $idAdmin)
     {
         parent::PDOConnection();
-        if(!isset($_SESSION)) 
-    { 
-        session_start(); 
+        $sql = "select count(*) from affectation where idClass=" . $idClass . " and idAdmin=" . $idAdmin . " and idEtudiant =" . $idEtudiant . "";
+        $res = $this->dbc->query($sql);
+        $res =  $res->fetchColumn();
+        parent::close();
+        return $res;
     }
-        $idAdmin =$_SESSION['id'];
+    public function affecterEtudiant($idEtudiant, $idClass){
+     if (!isset($_SESSION)) {
+            session_start();
+        }
+        $idAdmin = $_SESSION['id'];
+    if($this->verifierAffectation($idEtudiant,$idClass,$idAdmin) == 0){
+        parent::PDOConnection();
+       
         $statement = $this->dbc->prepare("INSERT INTO affectation(idClass,idEtudiant,idAdmin)VALUES(:idClass,:idEtudiant,:idAdmin)");
-        $statement->execute([
+        if ($statement->execute([
 
             "idEtudiant" => $idEtudiant,
             "idClass" => $idClass,
             "idAdmin" => $idAdmin
 
 
-        ]);
-        return 1;
+        ]) == true) {
+            return "1";
+        } else {
+            return 0;
+        }
+
+
         parent::close();
+    }
+       
     }
     public function readStudentByClass($idClass)
     {
+        parent::PDOConnection();      
+        $sql = "SELECT * FROM etudiant WHERE id in( SELECT idEtudiant FROM affectation where idClass=".$idClass." );";
+        $res = $this->dbc->query($sql);
+        $res->setFetchMode(PDO::FETCH_ASSOC);
+        return $res;
     }
+    public function desactiverCompteEtudiant($id)
+    {
+        $statement = $this->dbc->prepare("update etudiant set status = true where id = :id");
+
+        $statement->execute([
+            "id" => $id
+        ]);
+        parent::close();
+    }
+
+    public function activerCompteEtudiant($id)
+    {
+        $statement = $this->dbc->prepare("update etudiant set status = false where id = :id");
+
+        $statement->execute([
+            "id" => $id
+        ]);
+        
+        parent::close();
+    }
+    
 }

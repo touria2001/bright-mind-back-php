@@ -56,7 +56,9 @@ $prof = new CRUDProf();
     <td> <?php echo $class['matiere']; ?></td>
     <td><?php  $teacher = $prof->readProfById($class['idProf']);
     echo $teacher['nom']." ".$teacher['prenom']; ?></td>
-    <td><a href="afficherEtudiantByClass?id=<?php echo $class['id'] ?>">list</a></td>
+    <td><a href="afficherEtudiantByClass.php?id=<?php echo $class['id'] ?>">list</a></td>
+    <td ><a href="modifierClass.php?id=<?php echo $class['id'] ?>">edit</a></td>
+    <td><a href="../include/supprimerClass.php?id=<?php echo $class['id'] ?>">delete</a></td>
    
 
    

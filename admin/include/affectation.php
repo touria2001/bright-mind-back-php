@@ -4,9 +4,15 @@ if (!empty($_POST)) {
     $admin = new Admin();
 
     $size = $admin->afficherNombreMatieres();
+   
     for ($i = 0; $i < $size; $i++) {
-echo $_POST['subject' . $i];echo '<br>';
-       echo  $admin->affecterEtudiant($_POST['idEtudiant'], $_POST['subject' . $i]);
-       
+
+        if ($_POST['subject' . $i] != 0) {
+             echo   $admin->affecterEtudiant($_POST['idEtudiant'], $_POST['subject' . $i]);
+        }
     }
+     $admin  = new Admin();
+
+    $admin->accepterEtudiant($_POST['idEtudiant']);
+    header('location:../public/demandeEtudiant.php');
 }
